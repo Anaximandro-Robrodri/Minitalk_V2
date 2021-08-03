@@ -1,5 +1,4 @@
 #include "minitalk.h"
-#include <stdio.h>
 
 int	ft_int_len(long n)
 {
@@ -54,14 +53,18 @@ static void	ft_send_signal(char **argv, int argc)
 		{
 			binary = ft_binary(*str);
 			i = 0;
+			ft_putstr(binary);
+			write (1, "\n", 1);
 			while (binary[i])
 			{
-				if (binary[i++] == 0)
-					kill(SIGUSR1, pid);
+				sleep(1);
+				if (binary[i++] == 48)
+					kill(pid, SIGUSR1);
 				else
-					kill(SIGUSR2, pid);
+					kill(pid, SIGUSR2);
 			}
 			str++;
+			free(binary);
 		}
 	}
 }
