@@ -9,7 +9,6 @@ typedef struct s_signal
 {
 	char	*msg;
 	int	pos;
-	int	size;
 }	t_signal;
 
 #endif

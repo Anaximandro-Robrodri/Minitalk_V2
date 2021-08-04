@@ -6,21 +6,16 @@ void	ft_init_struct()
 {
 	holder.msg = NULL;
 	holder.pos = 0;
-	holder.size = 0;
 }
 
-static	char	ft_decimal(char	*msg)
+static	char	ft_decimal(int nbr, int base)
 {
-	int	nbr;
 	int	holder;
 	int	dec;
 	char	ret;
-	int	base;
 
-	nbr = ft_atoi(msg);
 	holder = 0;
 	dec = 0;
-	base = 1;
 	while (nbr > 0)
 	{
 		holder = nbr % 10;
@@ -53,33 +48,16 @@ static void	ft_invert_nbr()
 
 void	sig_handler(int signal)
 {
-/*	if (signal == SIGUSR1)
-	{
-		holder.pos *= 10;
-		holder.size++;
-	}
-	else if (signal == SIGUSR2)			0 * 0 es 0, normal que no funcione no?
-	{
-		holder.pos *= 10;
-		holder.pos += 1;
-		holder.size++;
-	}*/
 	if (holder.msg == NULL)
 		holder.msg = ft_calloc(7, sizeof(char));
 	if (signal == SIGUSR1)
-	{
-		holder.msg[holder.pos] = 48;
-		holder.pos++;
-	}
+		holder.msg[holder.pos++] = 48;
 	else if (signal == SIGUSR2)
-	{
-		holder.msg[holder.pos] = 49;
-		holder.pos++;
-	}
+		holder.msg[holder.pos++] = 49;
 	if (holder.pos == 7)
 	{
 		ft_invert_nbr();
-		ft_putchar(ft_decimal(holder.msg));
+		ft_putchar(ft_decimal(ft_atoi(holder.msg), 1));
 		holder.pos = 0;
 	}
 }
@@ -88,8 +66,7 @@ int main (void)
 {
 	ft_putstr("Your PID is: ");
 	ft_putnbr(getpid());
-	ft_putstr("\nInsert client PID\n");
-	// ESTADO DE CONFORT, DIGAMOS QUE ESTA EN ESPERA PARA ALGO
+	ft_putstr("\nWaiting for a message\n");
 	signal(SIGUSR1, sig_handler);
 	signal(SIGUSR2, sig_handler);
 	ft_init_struct();

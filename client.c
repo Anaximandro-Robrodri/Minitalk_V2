@@ -133,6 +133,11 @@ int main (int argc, char **argv)
 			ft_putstr("Invalid PID!\n");
 			exit(-1);
 		}
+		if (!*argv[2])
+		{
+			ft_putstr("Write something, don't be shy\n");
+			exit(-1);
+		}
 		ft_send_signal(ft_atoi(argv[1]), argv[2]);
 	}
 	else if (argc > 3)
