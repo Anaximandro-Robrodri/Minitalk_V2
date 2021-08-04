@@ -75,14 +75,27 @@ static void	ft_send_signal(char **argv, int argc)
 	}
 }
 */
-void	ft_send_signal(char **argv)
+
+static void	ft_send_new_line(int pid)
 {
-	int	pid;
-	char	*str;
+	char	*binary;
+
+	binary = ft_strdup("0101000");
+	while (*binary)
+	{
+		if (*binary == 48)
+			kill (pid, SIGUSR1);
+		else
+			kill (pid, SIGUSR2);
+		binary++;
+	}
+//	free(binary); COMPROBAR FUNCION FT_STRDUP
+}
+
+static void	ft_send_signal(int pid, char *str)
+{
 	int	shift;
 
-	pid = ft_atoi(argv[1]);
-	str = argv[2];
 	while (*str)
 	{
 		shift = 0;
@@ -97,14 +110,33 @@ void	ft_send_signal(char **argv)
 		}
 		str++;
 	}
+	ft_send_new_line(pid);
+}
+
+static int	ft_valid_pid(char *pid)
+{
+	while (*pid)
+	{
+		if (!ft_isdigit(*pid))
+			return (0);
+		pid++;
+	}
+	return (1);
 }
 
 int main (int argc, char **argv)
 {
 	if (argc == 3)
 	{
-		ft_send_signal(argv);
+		if (ft_valid_pid(argv[1]) == 0)
+		{
+			ft_putstr("Invalid PID!\n");
+			exit(-1);
+		}
+		ft_send_signal(ft_atoi(argv[1]), argv[2]);
 	}
+	else if (argc > 3)
+		ft_putstr("Format message: \"Your message\"\n");
 	else
 		ft_putstr("You must include server PID and a message\n");
 	return (0);
