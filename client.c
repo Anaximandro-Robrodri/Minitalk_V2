@@ -80,7 +80,7 @@ static void	ft_send_new_line(int pid)
 {
 	char	*binary;
 
-	binary = ft_strdup("0101000");
+	binary = "00001010";
 	while (*binary)
 	{
 		if (*binary == 48)
@@ -88,8 +88,8 @@ static void	ft_send_new_line(int pid)
 		else
 			kill (pid, SIGUSR2);
 		binary++;
+//		usleep(100);
 	}
-//	free(binary); COMPROBAR FUNCION FT_STRDUP
 }
 
 static void	ft_send_signal(int pid, char *str)
@@ -103,14 +103,20 @@ static void	ft_send_signal(int pid, char *str)
 	}
 	while (*str)
 	{
-		shift = 0;
-		while (shift < 7)
+		shift = 7;
+		while (shift >= 0)
 		{
 			if (((*str >> shift) & 1))
+			{
+				ft_putnbr(1);
 				kill(pid, SIGUSR2);
+			{
 			else
+			{
+				ft_putnbr(0);
 				kill(pid, SIGUSR1);
-		 	shift++;	 
+			}
+		 	shift--;	 
 //			usleep(100);
 		}
 		str++;
