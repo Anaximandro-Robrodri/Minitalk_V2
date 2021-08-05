@@ -58,7 +58,8 @@ void	sig_handler(int signal)
 	{
 		ft_invert_nbr();
 		ft_putchar(ft_decimal(ft_atoi(holder.msg), 1));
-		holder.pos = 0;
+		free(holder.msg);
+		ft_init_struct();
 	}
 }
 

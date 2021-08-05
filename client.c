@@ -96,6 +96,11 @@ static void	ft_send_signal(int pid, char *str)
 {
 	int	shift;
 
+	if (pid == 0)
+	{
+		ft_putstr("Invalid PID!\n");
+		exit(-1);
+	}
 	while (*str)
 	{
 		shift = 0;
@@ -106,7 +111,7 @@ static void	ft_send_signal(int pid, char *str)
 			else
 				kill(pid, SIGUSR1);
 		 	shift++;	 
-			usleep(50);
+//			usleep(100);
 		}
 		str++;
 	}
