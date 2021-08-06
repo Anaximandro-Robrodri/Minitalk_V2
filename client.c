@@ -4,16 +4,14 @@ static void	ft_send_new_line(int pid)
 {
 	char	*binary;
 
-	binary = "00001010";
+	binary = "00000000";
 	while (*binary)
 	{
-		if (*binary == 48)
-			kill (pid, SIGUSR1);
-		else
-			kill (pid, SIGUSR2);
+		kill (pid, SIGUSR1);
 		binary++;
 		usleep(50);
 	}
+	ft_putstr("Message delivered!\n");
 }
 
 static void	ft_send_signal(int pid, char *str)

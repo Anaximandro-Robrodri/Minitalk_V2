@@ -8,7 +8,7 @@
 typedef struct s_signal
 {
 	char		msg;
-	int		pos;
+	int			pos;
 }	t_signal;
 
 #endif

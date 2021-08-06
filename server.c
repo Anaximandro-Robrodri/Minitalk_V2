@@ -8,6 +8,13 @@ void	ft_init_struct()
 	holder.pos = 0;
 }
 
+void	final_message()
+{
+	holder.msg = '\n';
+	ft_putchar(holder.msg);
+	ft_putstr("Message received!\n");
+}
+
 void	sig_handler(int signal)
 {
 	if (signal == SIGUSR2)
@@ -17,7 +24,10 @@ void	sig_handler(int signal)
 		holder.msg <<= 1;
 	else if (holder.pos == 8)
 	{
-		ft_putchar(holder.msg);
+		if (holder.msg == 0)
+			final_message();
+		else
+			ft_putchar(holder.msg);
 		ft_init_struct();
 	}
 }
