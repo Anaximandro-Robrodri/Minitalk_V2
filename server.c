@@ -2,20 +2,20 @@
 
 	t_signal	holder;
 
-void	ft_init_struct()
+static void	ft_init_struct()
 {
 	holder.msg = 0;
 	holder.pos = 0;
 }
 
-void	final_message()
+static void	final_message()
 {
 	holder.msg = '\n';
 	ft_putchar(holder.msg);
 	ft_putstr("Message received!\n");
 }
 
-void	sig_handler(int signal)
+static void	sig_handler(int signal)
 {
 	if (signal == SIGUSR2)
 		holder.msg |= 1;

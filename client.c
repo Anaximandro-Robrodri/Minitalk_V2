@@ -2,13 +2,13 @@
 
 static void	ft_send_new_line(int pid)
 {
-	char	*binary;
+	int		i;;
 
-	binary = "00000000";
-	while (*binary)
+	i = 0;
+	while (i < 8)
 	{
 		kill (pid, SIGUSR1);
-		binary++;
+		i++;
 		usleep(50);
 	}
 	ft_putstr("Message delivered!\n");
