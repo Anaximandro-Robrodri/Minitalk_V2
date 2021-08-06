@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   client.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: robrodri <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/06 13:48:35 by robrodri          #+#    #+#             */
+/*   Updated: 2021/08/06 13:49:07 by robrodri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minitalk.h"
 
 static void	ft_send_new_line(int pid)
 {
-	int		i;;
+	int	i;
 
 	i = 0;
 	while (i < 8)
@@ -32,7 +44,7 @@ static void	ft_send_signal(int pid, char *str)
 				kill(pid, SIGUSR2);
 			else
 				kill(pid, SIGUSR1);
-		 	shift--;	 
+			shift--;
 			usleep(50);
 		}
 		str++;
@@ -51,7 +63,7 @@ static int	ft_valid_pid(char *pid)
 	return (1);
 }
 
-int main (int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	if (argc == 3)
 	{

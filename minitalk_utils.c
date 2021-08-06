@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minitalk_utils.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: robrodri <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/06 13:49:40 by robrodri          #+#    #+#             */
+/*   Updated: 2021/08/06 13:50:06 by robrodri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minitalk.h"
 
 void	ft_putchar(char c)
@@ -42,7 +54,7 @@ void	ft_putnbr(long n)
 	}
 }
 
-int	ft_isdigit (int c)
+int	ft_isdigit(int c)
 {
 	if ((c < 48) || (c > 57))
 	{
@@ -78,4 +90,3 @@ int	ft_atoi(const char *str)
 		return ((int)nb * -1);
 	return ((int) nb);
 }
-

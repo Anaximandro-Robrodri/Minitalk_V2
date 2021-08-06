@@ -13,10 +13,10 @@ FLAGS = -Wall -Wextra -Werror
 all: $(SERVER) $(CLIENT)
 
 $(SERVER) : server.o
-	$(CC) server.o -o server $(UTILS)
+	$(CC) $(FLAGS) server.o -o server $(UTILS)
 
 $(CLIENT) : client.o
-	$(CC) client.o -o client $(UTILS)
+	$(CC) $(FLAGS) client.o -o client $(UTILS)
 
 clean:
 	$(RM) *.o
